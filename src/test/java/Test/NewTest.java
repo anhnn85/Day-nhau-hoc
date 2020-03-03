@@ -24,8 +24,6 @@ public class NewTest {
 		driver = new FirefoxDriver();
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("http://live.guru99.com");
-		// element=driver.findElement(By.xpath("//a[@href='http://live.demoguru99.com/index.php/customer/account/']"));
-		// driver.findElement(By.xpath("/html/body/div[1]/div/div[3]/div/div[4]/ul/li[1]/a")).click();
 
 	}
 
@@ -69,24 +67,15 @@ public class NewTest {
 
 	@Test
 	public void testcase3() {
-		// cau lenh lam moi trang hien tai
-		// driver.get(driver.getCurrentUrl());
-		// click vao my account o footer = xpath
-		// driver.findElement(By.xpath("//div[@id='header-nav']//a[@href='http://live.demoguru99.com/index.php/mobile.html']")).click();
-		driver.findElement(
-				By.xpath("//div[@id='header-nav']//a[@href='http://live.demoguru99.com/index.php/mobile.html']"))
+		driver.findElement(By.xpath("//div[@id='header-nav']//a[text()='Mobile']")).click();
+		driver.findElement(By.xpath("//a[@title='Samsung Galaxy']/following-sibling::div/span[text()='Add to cart']"))
 				.click();
-
-		driver.findElement(By.xpath("//a[@title='Samsung Galaxy']/following-sibling::div//span[text()='Add to cart']"))
-				.click();
-		// driver.findElement(By.xpath("/html/body/div[1]/div/div[2]/div/div[2]/div[1]/div[3]/ul/li[3]/div/div[3]/button")).click();
-		// assertEquals(driver.findElement(By.xpath("//span[text()='1']", expected);
 
 	}
 
 	@AfterTest(alwaysRun = true)
 	public void afterTest() {
-		// driver.quit();
+		driver.quit();
 	}
 
 }
