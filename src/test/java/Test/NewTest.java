@@ -71,6 +71,9 @@ public class NewTest {
 		driver.findElement(By.xpath("//a[text()='Samsung Galaxy']/following-sibling::div//span[text()='Add to cart']"))
 				.click();
 
+		String cart = driver.findElement(By.xpath("//span[@class='count']")).getText();
+		assertEquals(cart, "1");
+
 	}
 
 	@AfterTest(alwaysRun = true)
