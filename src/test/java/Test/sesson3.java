@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -14,6 +15,7 @@ import org.testng.annotations.Test;
 
 public class sesson3 {
 	WebDriver driver;
+	WebElement element;
 	public static int num = 0;
 
 	@BeforeTest
@@ -24,12 +26,15 @@ public class sesson3 {
 
 	}
 
-//	@Test
+	@Test
 
 	public void testcase1() throws InterruptedException {
-		driver.get("http://demo.guru99.com/V4/index.php"); // nhap id //
-		driver.findElement(By.xpath("//form[@name='frmLogin']//input[@name=uid]")).sendKeys("mngr248532"); //
-		driver.findElement(By.xpath("//form[@name='frmLogin']//input[@name=password]")).sendKeys("UtUnYnu");
+		driver.get("http://demo.guru99.com/V4/index.php");
+		// input id
+		// driver.findElement(By.xpath("//form[@name='frmLogin']//input[@name=uid]")).sendKeys("mngr248532");
+		// input pass
+		// driver.findElement(By.xpath("//form[@name='frmLogin']//input[@name=password]")).sendKeys("UtUnYnu");
+
 		driver.findElement(By.name("uid")).sendKeys("mngr248532");
 		driver.findElement(By.name("password")).sendKeys("UtUnYnu");
 		driver.findElement(By.name("btnLogin")).click();
@@ -53,8 +58,9 @@ public class sesson3 {
 		driver.findElement(By.xpath("//input[@value='Submit']")).click();
 
 		// verify "Customer Registered Successfully" //
-		Assert.assertEquals(driver.findElement(By.xpath("//p[text(),'Customer Registered Successfully!!!']")).getText(),
-				"Customer Registered Successfully!!!");
+		String text1 = driver.findElement(By.xpath("//p[text()='Customer Registered Successfully!!!']")).getText();
+		Assert.assertEquals(text1, "Customer Registered Successfully!!!");
+		System.out.println("Customer Registered Successfully!!!");
 
 	}
 
@@ -86,8 +92,9 @@ public class sesson3 {
 		// click on register
 		driver.findElement(By.xpath("//input[@value='Register']")).click();
 
-		Assert.assertEquals(driver.findElement(By.xpath("//p[text(),'Your Registration complete!!!']")).getText(),
-				"Customer Registered Successfully!!!");
+		String str = driver.findElement(By.xpath("//div[@class='result']")).getText();
+		Assert.assertEquals(str, "Your registration completed");
+		System.out.println("Your registration completed");
 
 	}
 
@@ -100,7 +107,7 @@ public class sesson3 {
 
 	@AfterTest(alwaysRun = true)
 	public void afterTest() {
-		driver.quit();
+		// driver.quit();
 	}
 
 }

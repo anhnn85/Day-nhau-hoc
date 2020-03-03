@@ -68,7 +68,7 @@ public class NewTest {
 	@Test
 	public void testcase3() {
 		driver.findElement(By.xpath("//div[@id='header-nav']//a[text()='Mobile']")).click();
-		driver.findElement(By.xpath("//a[@title='Samsung Galaxy']/following-sibling::div/span[text()='Add to cart']"))
+		driver.findElement(By.xpath("//a[text()='Samsung Galaxy']/following-sibling::div//span[text()='Add to cart']"))
 				.click();
 
 	}
