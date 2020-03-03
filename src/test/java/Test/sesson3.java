@@ -52,7 +52,10 @@ public class sesson3 {
 		driver.findElement(By.name("state")).sendKeys("Viet Nam");
 		driver.findElement(By.name("pinno")).sendKeys("654321");
 		driver.findElement(By.name("telephoneno")).sendKeys("0909009009");
-		driver.findElement(By.name("emailid")).sendKeys("anhnn" + random(num) + "@gmail.com");
+
+		String email = "anhnn" + random(num) + "@gmail.com";
+		driver.findElement(By.name("emailid")).sendKeys(email);
+
 		driver.findElement(By.name("password")).sendKeys("123456aA");
 
 		driver.findElement(By.xpath("//input[@value='Submit']")).click();
@@ -61,6 +64,40 @@ public class sesson3 {
 		String text1 = driver.findElement(By.xpath("//p[text()='Customer Registered Successfully!!!']")).getText();
 		Assert.assertEquals(text1, "Customer Registered Successfully!!!");
 		System.out.println("Customer Registered Successfully!!!");
+
+		String name = driver.findElement(By.xpath("//td[text()='Customer Name']//following-sibling::td")).getText();
+		Assert.assertEquals(name, "Ngocanh");
+		System.out.println(name);
+
+		String gender = driver.findElement(By.xpath("//td[text()='Gender']//following-sibling::td")).getText();
+		Assert.assertEquals(gender, "female");
+		System.out.println(gender);
+
+		String dob = driver.findElement(By.xpath("//td[text()='Birthdate']//following-sibling::td")).getText();
+		Assert.assertEquals(dob, "1985-02-05");
+		System.out.println(dob);
+
+		String addr = driver.findElement(By.xpath("//td[text()='Address']//following-sibling::td")).getText();
+		Assert.assertEquals(addr, "TuLiem");
+		System.out.println(addr);
+
+		String city = driver.findElement(By.xpath("//td[text()='City']//following-sibling::td")).getText();
+		Assert.assertEquals(city, "Ha Noi");
+		System.out.println(city);
+
+		String state = driver.findElement(By.xpath("//td[text()='State']//following-sibling::td")).getText();
+		Assert.assertEquals(state, "Viet Nam");
+		System.out.println(state);
+
+		String pin = driver.findElement(By.xpath("//td[text()='Pin']//following-sibling::td")).getText();
+		Assert.assertEquals(pin, "654321");
+		System.out.println(pin);
+
+		String email1 = driver.findElement(By.xpath("//td[text()='Email']//following-sibling::td")).getText();
+		Assert.assertEquals(email1, email);
+		System.out.println(email1);
+
+		//
 
 	}
 
@@ -107,7 +144,7 @@ public class sesson3 {
 
 	@AfterTest(alwaysRun = true)
 	public void afterTest() {
-		// driver.quit();
+		driver.quit();
 	}
 
 }
