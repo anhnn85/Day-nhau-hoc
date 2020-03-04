@@ -46,7 +46,7 @@ public class sesson3 {
 		// Fill thong tin form dang ky
 		driver.findElement(By.name("name")).sendKeys("Ngocanh");
 		driver.findElement(By.xpath("//input[@value='f']")).click();
-		driver.findElement(By.name("dob")).sendKeys("02/05/1985");
+		driver.findElement(By.name("dob")).sendKeys("1985-02-05");
 		driver.findElement(By.name("addr")).sendKeys("TuLiem");
 		driver.findElement(By.name("city")).sendKeys("Ha Noi");
 		driver.findElement(By.name("state")).sendKeys("Viet Nam");
