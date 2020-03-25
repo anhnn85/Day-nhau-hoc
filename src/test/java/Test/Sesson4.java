@@ -1,29 +1,28 @@
 package Test;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.Assert;
+import org.testng.AssertJUnit;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+@Test
 public class Sesson4 {
 	WebDriver driver;
 	// Actions act = new Actions(driver);
 
 	@BeforeTest
 	public void beforeTest() {
-
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		// driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
 	}
 
@@ -32,12 +31,13 @@ public class Sesson4 {
 
 		driver.get("http://admin:admin@the-internet.herokuapp.com/basic_auth");
 		String text1 = driver.findElement(By.xpath("//div[@class='example']//p")).getText();
-		Assert.assertEquals(text1, "Congratulations! You must have the proper credentials.");
+		AssertJUnit.assertEquals(text1, "Congratulations! You must have the proper credentials.");
 		System.out.println(text1);
 
 	}
 
 //	@Test
+	@Test
 	public void testcase2() throws InterruptedException {
 
 		driver.get("http://www.myntra.com");
@@ -57,6 +57,7 @@ public class Sesson4 {
 	}
 
 //	@Test
+	@Test
 	public void testcase3() {
 		driver.get("https://jqueryui.com/resources/demos/selectable/display-grid.html");
 		WebElement element1 = driver.findElement(By.xpath("//li[text()='1']"));
@@ -66,29 +67,14 @@ public class Sesson4 {
 		act.moveToElement(element4).perform();
 		act.release().build().perform();
 
-		// verify element 1
-		String ele1 = driver.findElement(By.xpath("//li[text()='1']")).getText();
-		Assert.assertEquals(ele1, "1");
-		System.out.println(ele1);
-
-		// verify element 2
-		String ele2 = driver.findElement(By.xpath("//li[text()='2']")).getText();
-		Assert.assertEquals(ele2, "2");
-		System.out.println(ele2);
-
-		// verify element 3
-		String ele3 = driver.findElement(By.xpath("//li[text()='3']")).getText();
-		Assert.assertEquals(ele3, "3");
-		System.out.println(ele3);
-
-		// verify element 4
-		String ele4 = driver.findElement(By.xpath("//li[text()='4']")).getText();
-		Assert.assertEquals(ele4, "4");
-		System.out.println(ele4);
 	}
 
-//	@Test
+	@Test
 	public void testcase4() throws InterruptedException {
+		String o1 = "1";
+		String o2 = "3";
+		String o3 = "5";
+		String o4 = "7";
 
 		driver.get("https://jqueryui.com/resources/demos/selectable/display-grid.html");
 		WebElement element1 = driver.findElement(By.xpath("//li[text()='1']"));
@@ -96,35 +82,19 @@ public class Sesson4 {
 		WebElement element3 = driver.findElement(By.xpath("//li[text()='5']"));
 		WebElement element4 = driver.findElement(By.xpath("//li[text()='7']"));
 		Actions act = new Actions(driver);
-
-		act.keyDown(element1, Keys.CONTROL).click().build().perform();
-		act.keyDown(element2, Keys.CONTROL).click().build().perform();
-		act.keyDown(element3, Keys.CONTROL).click().build().perform();
-		act.keyDown(element4, Keys.CONTROL).click().build().perform();
-		Thread.sleep(5000);
+		act.keyDown(Keys.CONTROL).click(element1).click(element2).click(element3).click(element4).build().perform();
+		Thread.sleep(3000);
 
 		// verify element 1
-		String ele1 = driver.findElement(By.xpath("//li[text()='1']")).getText();
-		Assert.assertEquals(ele1, "1");
-		System.out.println(ele1);
+////		List<WebElement> listelements = driver.findElements(By.xpath("//*[contains(@class,'ui-selected')]"));
+//		for (WebElement list : listelements) {
+//			System.out.println(list.getText());
+//		}
 
-		// verify element 2
-		String ele2 = driver.findElement(By.xpath("//li[text()='3']")).getText();
-		Assert.assertEquals(ele2, "3");
-		System.out.println(ele2);
-
-		// verify element 3
-		String ele3 = driver.findElement(By.xpath("//li[text()='5']")).getText();
-		Assert.assertEquals(ele3, "5");
-		System.out.println(ele3);
-
-		// verify element 4
-		String ele4 = driver.findElement(By.xpath("//li[text()='7']")).getText();
-		Assert.assertEquals(ele4, "7");
-		System.out.println(ele4);
 	}
 
 //	@Test
+	@Test
 	public void testcase5() throws InterruptedException {
 
 		driver.get("http://swisnl.github.io/jQuery-contextMenu/demo.html");
@@ -134,7 +104,7 @@ public class Sesson4 {
 		Thread.sleep(2000);
 		// verify menu
 		Boolean menu = driver.findElement(By.xpath("//ul[@class='context-menu-list context-menu-root']")).isDisplayed();
-		assertTrue(menu);
+		assert (menu);
 		System.out.println("The menu is displayed");
 
 		// Step4: click on Copy
@@ -147,6 +117,7 @@ public class Sesson4 {
 
 	}
 
+//	@Test
 	@Test
 	public void testcase6() throws InterruptedException {
 
@@ -164,7 +135,7 @@ public class Sesson4 {
 		// Thread.sleep(2000);
 
 		String text = driver.findElement(By.xpath("//div[text()='You did great!']")).getText();
-		Assert.assertEquals(text, "You did great!");
+		AssertJUnit.assertEquals(text, "You did great!");
 		System.out.println(text);
 
 	}
